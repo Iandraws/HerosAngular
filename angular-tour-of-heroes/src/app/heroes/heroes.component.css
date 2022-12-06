@@ -1,0 +1,22 @@
+.button {
+ 
+  margin: 42px;
+}
+.button-item {
+  margin: 10px 0px;
+  background-color: #a9a9a9;
+}
+.ID {
+  background-color: #ffe4e1;
+  width: 20%;
+  height: 102%;
+  left: 5px;
+  top: -1px;
+  width: 90px;
+  align-items: center;
+  position: absolute;
+  width: 20px;
+  height: 20;
+  margin-left: -23px;
+  display: flex;
+}
