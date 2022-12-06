@@ -1,26 +1,33 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Hero } from '../hero';
+import { HeroDetailComponent } from '../hero-detail/hero-detail.component';
 import { HEROES } from '../mock.heros';
 
 @Component({
+  standalone: true,
+  imports: [NgbModule, HeroDetailComponent, FormsModule, CommonModule],
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
-  styleUrls: ['./heroes.component.css']
+  styleUrls: ['./heroes.component.css'],
 })
 export class HeroesComponent {
-  constructor(private modalService: NgbModal) {
-  }
-  heroes=HEROES;
-  
-  
+  heroes = HEROES;
+  selectedHero: Hero;
+
+  constructor(private modalService: NgbModal) {}
+
   public open(modal: any): void {
     this.modalService.open(modal);
   }
-  selectedHero?: Hero;
-   onSelect(hero:Hero):void{
-    this.selectedHero=hero;
+
+  onSelect(hero: Hero): void {
+    this.selectedHero = hero;
   }
-  
- 
+
+  updateHero(newName: string) {
+    this.selectedHero.name = newName;
+  }
 }
