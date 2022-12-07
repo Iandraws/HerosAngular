@@ -1,9 +1,6 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
   <div class="container-fluid">
-    <a
-      class="navbar-brand"
-      href="#"
-    >
+    <a class="navbar-brand" href="#">
       <h1>Tour of Heroes</h1>
     </a>
     <button
@@ -17,35 +14,24 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div
-      id="navbarSupportedContent"
-      class="collapse navbar-collapse"
-    >
-      <ul class="navbar-nav ">
+    <div id="navbarSupportedContent" class="collapse navbar-collapse">
+      <ul class="navbar-nav">
         <li class="nav-item">
-          <a
-            class="nav-link active"
-            href="#"
-            aria-current="page"
-          >
+          <a class="nav-link active" href="#" aria-current="page">
             Daschboard
           </a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link active"
-            href="#"
-            aria-current="page"
-          >
-            Heroes
-          </a>
+          <a class="nav-link active" href="#" aria-current="page"> Heroes </a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
 
+
 <button (click)="onSelect(undefined)">Clear</button>
+<button class="delete" (click)="delete()"> delete Marked</button>
 <div
   class="btn-group-vertical button mt-4 mb-2 ml-3"
   role="group"
@@ -59,29 +45,32 @@
   >
     <span class="ID">{{ hero.id }}</span>
     {{ hero.name }}
+    <button (click)="deleteHero($event, hero)">X</button>
+    <input
+  type="checkbox"
+  [(ngModel)]="hero.checked"
+  [ngModelOptions]="{standalone: true}"/>
   </button>
 
-  <div
-    class="input-group input-group-lg"
-    *ngIf="selectedHero"
-  >
-    <span
-      id="inputGroup-sizing-lg"
-      class="input-group-text"
-    >
+  <div class="input-group input-group-lg" *ngIf="selectedHero">
+    <span id="inputGroup-sizing-lg" class="input-group-text">
       {{ selectedHero.id }}
     </span>
+
+    Edit
     <input
-      #input
+      #edit
       [ngModel]="selectedHero.name"
       aria-describedby="inputGroup-sizing-lg"
       aria-label="Sizing example input"
-      (keydown.enter)="updateHero(input.value)"
-    >
+      (keydown.enter)="updateHero(edit.value)"
+    />
   </div>
-  <app-hero-detail
+  Create
+  <input #create (keydown.enter)="addHero(create.value)" />
+
+  <!-- <app-hero-detail
     *ngIf="selectedHero"
     [hero]="selectedHero"
-  ></app-hero-detail>
-
+  ></app-hero-detail> -->
 </div>
